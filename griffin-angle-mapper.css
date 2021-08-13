@@ -4,7 +4,7 @@ body {
 }
 
 #ContainerDivMap {
-  width: 30%;
+  width: 35%;
   margin: auto;
   height: 600px;
   position:relative;
@@ -20,7 +20,7 @@ body {
 }
 
 #ContainerDivTable {
-  width: 65%;
+  width: 60%;
   margin: auto;
   height: 600px;
   position:relative;
