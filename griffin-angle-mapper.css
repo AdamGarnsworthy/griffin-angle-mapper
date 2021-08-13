@@ -16,7 +16,7 @@ body {
   display: inline-block; 
   vertical-align:middle;
   text-align: center;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 #ContainerDivTable {
