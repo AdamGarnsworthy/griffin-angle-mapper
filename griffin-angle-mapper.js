@@ -561,8 +561,6 @@ cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 		  // Calculate the angular difference for this pair of crystals.
 		  // The function returns 3 decimal place precision
 		  thisAngle = CalculateAngularDifference(i,j);
-		  
-		  console.log('i='+i+', j='+j+', Ang Diff='+thisAngle);
 
 		  // found is zero until the angular bin is found, if it is still zero then a new entry is created.
 		  var found=0;
@@ -571,7 +569,6 @@ cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 		  if(AngularBinsAngle.length<1){
 		      AngularBinsAngle[0] = thisAngle;
 		      AngularBinsWeight[0] = 1;
-		      console.log('First ever entry - create for first time!!!');
 		      continue;
 		  }
 
@@ -580,7 +577,6 @@ cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 		      if((thisAngle >= parseFloat(AngularBinsAngle[k] - 0.001)) && (thisAngle <= parseFloat(AngularBinsAngle[k] + 0.001))){
 			  AngularBinsWeight[k]++;
 			  found=1;
-			  console.log('Found angle ('+thisAngle+') for i='+i+',j='+j+' in angular bin['+k+'] ('+AngularBinsAngle[k]+') with weight '+AngularBinsWeight[k]);
 			  break;
 		      }
 		  }
@@ -590,7 +586,6 @@ cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 		  if(!found){
 		      AngularBinsAngle[AngularBinsAngle.length] = thisAngle;
 		      AngularBinsWeight[AngularBinsWeight.length] = 1;
-		      console.log('Create new angular bin['+AngularBinsWeight.length+'] ('+thisAngle+')');
 		  }
 	      }
 	  }
@@ -636,9 +631,6 @@ cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 	      cell2.innerHTML = AngularBinsAngle[num]; 
 	      cell3.innerHTML = AngularBinsWeight[num];
 	  }
-	  
-	  console.log(AngularBinsAngle,AngularBinsWeight);	  
-	  console.log(AngularBinsAngle.sort(function(a, b){return a-b}));
 	  
       }//End of PlotTables
 
