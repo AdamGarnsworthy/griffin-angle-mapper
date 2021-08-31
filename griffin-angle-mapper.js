@@ -5,8 +5,9 @@
       var CloverLocation = ['Downstream Lampshade', 'Corona', 'Corona', 'Upstream Lampshade']; 
       var CrystalTheta = []; 
       var CrystalPhi = [];
-      var RadToDeg = DegToRad = (Math.PI / 180.0);
-      var NPairsAngularBins = [];
+      var RadToDeg = DegToRad = (Math.PI / 180.000);
+      var AngularBinsAngle = [];
+      var AngularBinsWeight = [];
       var ExcludedCrystalsList = [];
       
       document.onload = initialSetup();
@@ -138,9 +139,6 @@ for(i=0; i<NumCrystals; i++){
        opt.text = 'Crystal '+(i+1)+', Clover '+(Math.floor(i/4)+1)+', '+CloverLocation[Math.floor(i/16)]; 
        sel.appendChild(opt);
     }
-
-      // Zero the NPairsAngularBins array
-      for(i=0; i<=180; i++){ NPairsAngularBins[i]=0; }
       
       //Draw initial Tables
       PlotTables();
@@ -170,93 +168,272 @@ function SetupAngles() {
       
       if(CrystalDistance == "145"){
       
-      CrystalTheta = [
-      // Downstream Lampshade
- 37.9,  53.2,  53.2,  37.9, 
- 37.9,  53.2,  53.2,  37.9, 
- 37.9,  53.2,  53.2,  37.9, 
- 37.9,  53.2,  53.2,  37.9, 
-      //Corona
- 82.3,  97.7,  97.7,  82.3,
- 82.3,  97.7,  97.7,  82.3,
- 82.3,  97.7,  97.7,  82.3,
- 82.3,  97.7,  97.7,  82.3,
- 82.3,  97.7,  97.7,  82.3,
- 82.3,  97.7,  97.7,  82.3,
- 82.3,  97.7,  97.7,  82.3,
- 82.3,  97.7,  97.7,  82.3,
-// Upstream Lampshade
-126.8, 142.1, 142.1, 126.8, 
-126.8, 142.1, 142.1, 126.8, 
-126.8, 142.1, 142.1, 126.8, 
-126.8, 142.1, 142.1, 126.8
+	  CrystalTheta = [// 145mm distance
+	      37.8867847	,
+53.1854474	,
+53.1854474	,
+37.8867847	,
+37.8867847	,
+53.1854474	,
+53.1854474	,
+37.8867847	,
+37.8867847	,
+53.1854474	,
+53.1854474	,
+37.8867847	,
+37.8867847	,
+53.1854474	,
+53.1854474	,
+37.8867847	,
+82.27899751	,
+97.72100249	,
+97.72100249	,
+82.27899751	,
+82.27899751	,
+97.72100249	,
+97.72100249	,
+82.27899751	,
+82.27899751	,
+97.72100249	,
+97.72100249	,
+82.27899751	,
+82.27899751	,
+97.72100249	,
+97.72100249	,
+82.27899751	,
+82.27899751	,
+97.72100249	,
+97.72100249	,
+82.27899751	,
+82.27899751	,
+97.72100249	,
+97.72100249	,
+82.27899751	,
+82.27899751	,
+97.72100249	,
+97.72100249	,
+82.27899751	,
+82.27899751	,
+97.72100249	,
+97.72100249	,
+82.27899751	,
+126.8145526	,
+142.1132153	,
+142.1132153	,
+126.8145526	,
+126.8145526	,
+142.1132153	,
+142.1132153	,
+126.8145526	,
+126.8145526	,
+142.1132153	,
+142.1132153	,
+126.8145526	,
+126.8145526	,
+142.1132153	,
+142.1132153	,
+126.8145526	
 ];
-      CrystalPhi = [
-      // Downstream Lampshade
- 80.1,  77.2,  57.8,  54.9, 
-170.1, 167.2, 147.8, 144.9, 
-260.1, 257.2, 237.8, 234.9, 
-350.1, 347.2, 327.8, 324.9, 
-      //Corona
- 30.3,  30.3,  14.7,  14.7,
- 75.3,  75.3,  59.7,  59.7,
-120.3, 120.3, 104.7, 104.7,
-165.3, 165.3, 149.7, 149.7,
-210.3, 210.3, 194.7, 194.7,
-255.3, 255.3, 239.7, 239.7,
-300.3, 300.3, 284.7, 284.7,
-345.3, 345.3, 329.7, 329.7,
-// Upstream Lampshade
- 77.2,  80.1,  54.9,  57.8, 
-167.2, 170.1, 144.9, 147.8, 
-257.2, 260.1, 234.9, 237.8, 
-347.2, 350.1, 324.9, 327.8
+	  CrystalPhi = [// 145mm distance
+	      80.13699842	,
+77.16081987	,
+57.83918013	,
+54.86300158	,
+170.1369984	,
+167.1608199	,
+147.8391801	,
+144.8630016	,
+260.1369984	,
+257.1608199	,
+237.8391801	,
+234.8630016	,
+350.1369984	,
+347.1608199	,
+327.8391801	,
+324.8630016	,
+30.29207808	,
+30.29207808	,
+14.70792192	,
+14.70792192	,
+75.29207808	,
+75.29207808	,
+59.70792192	,
+59.70792192	,
+120.2920781	,
+120.2920781	,
+104.7079219	,
+104.7079219	,
+165.2920781	,
+165.2920781	,
+149.7079219	,
+149.7079219	,
+210.2920781	,
+210.2920781	,
+194.7079219	,
+194.7079219	,
+255.2920781	,
+255.2920781	,
+239.7079219	,
+239.7079219	,
+300.2920781	,
+300.2920781	,
+284.7079219	,
+284.7079219	,
+345.2920781	,
+345.2920781	,
+329.7079219	,
+329.7079219	,
+77.16081987	,
+80.13699842	,
+54.86300158	,
+57.83918013	,
+167.1608199	,
+170.1369984	,
+144.8630016	,
+147.8391801	,
+257.1608199	,
+260.1369984	,
+234.8630016	,
+237.8391801	,
+347.1608199	,
+350.1369984	,
+324.8630016	,
+327.8391801	
 ];
       }
       else{
       // 110mm distance
-      CrystalTheta = [
-      // Downstream Lampshade 
- 36.5,  55.1,  55.1,  36.5, 
- 36.5,  55.1,  55.1,  36.5, 
- 36.5,  55.1,  55.1,  36.5, 
- 36.5,  55.1,  55.1,  36.5,
-      //Corona
- 80.6,  99.4,  99.4,  80.6,
- 80.6,  99.4,  99.4,  80.6,
- 80.6,  99.4,  99.4,  80.6,
- 80.6,  99.4,  99.4,  80.6,
- 80.6,  99.4,  99.4,  80.6,
- 80.6,  99.4,  99.4,  80.6,
- 80.6,  99.4,  99.4,  80.6,
- 80.6,  99.4,  99.4,  80.6,
-// Upstream Lampshade
-124.9, 143.5, 143.5, 124.9, 
-124.9, 143.5, 143.5, 124.9, 
-124.9, 143.5, 143.5, 124.9, 
-124.9, 143.5, 143.5, 124.9
-      
+	  CrystalTheta = [// 110mm distance
+	      36.5419172	,
+55.06797108	,
+55.06797108	,
+36.5419172	,
+36.5419172	,
+55.06797108	,
+55.06797108	,
+36.5419172	,
+36.5419172	,
+55.06797108	,
+55.06797108	,
+36.5419172	,
+36.5419172	,
+55.06797108	,
+55.06797108	,
+36.5419172	,
+80.60659389	,
+99.39340611	,
+99.39340611	,
+80.60659389	,
+80.60659389	,
+99.39340611	,
+99.39340611	,
+80.60659389	,
+80.60659389	,
+99.39340611	,
+99.39340611	,
+80.60659389	,
+80.60659389	,
+99.39340611	,
+99.39340611	,
+80.60659389	,
+80.60659389	,
+99.39340611	,
+99.39340611	,
+80.60659389	,
+80.60659389	,
+99.39340611	,
+99.39340611	,
+80.60659389	,
+80.60659389	,
+99.39340611	,
+99.39340611	,
+80.60659389	,
+80.60659389	,
+99.39340611	,
+99.39340611	,
+80.60659389	,
+124.9320289	,
+143.4580828	,
+143.4580828	,
+124.9320289	,
+124.9320289	,
+143.4580828	,
+143.4580828	,
+124.9320289	,
+124.9320289	,
+143.4580828	,
+143.4580828	,
+124.9320289	,
+124.9320289	,
+143.4580828	,
+143.4580828	,
+124.9320289
 ];
-      CrystalPhi = [
-      // Downstream Lampshade
- 83.4,  79.0,  56.0,  51.6, 
-173.4, 169.0, 146.0, 141.6, 
-263.4, 259.0, 236.0, 231.6, 
-353.4, 349.0, 326.0, 321.6, 
-      //Corona
- 32.0,  32.0,  13.0,  13.0,
- 77.0,  77.0,  58.0,  58.0,
-122.0, 122.0, 103.0, 103.0,
-167.0, 167.0, 148.0, 148.0,
-212.0, 212.0, 193.0, 193.0,
-257.0, 257.0, 238.0, 238.0,
-302.0, 302.0, 283.0, 283.0,
-347.0, 347.0, 347.0, 347.0,
-// Upstream Lampshade
- 79.0,  83.4,  51.6,  56.0, 
-169.0, 173.4, 141.6, 146.0, 
-259.0, 263.4, 231.6, 236.0, 
-349.0, 353.4, 321.6, 326.0
+	  CrystalPhi = [// 110mm distance
+	      83.40942207	,
+78.98318538	,
+56.01681462	,
+51.59057793	,
+173.4094221	,
+168.9831854	,
+146.0168146	,
+141.5905779	,
+263.4094221	,
+258.9831854	,
+236.0168146	,
+231.5905779	,
+353.4094221	,
+348.9831854	,
+326.0168146	,
+321.5905779	,
+32.02225501	,
+32.02225501	,
+12.97774499	,
+12.97774499	,
+77.02225501	,
+77.02225501	,
+57.97774499	,
+57.97774499	,
+122.022255	,
+122.022255	,
+102.977745	,
+102.977745	,
+167.022255	,
+167.022255	,
+147.977745	,
+147.977745	,
+212.022255	,
+212.022255	,
+192.977745	,
+192.977745	,
+257.022255	,
+257.022255	,
+237.977745	,
+237.977745	,
+302.022255	,
+302.022255	,
+282.977745	,
+282.977745	,
+347.022255	,
+347.022255	,
+327.977745	,
+327.977745	,
+78.98318538	,
+83.40942207	,
+51.59057793	,
+56.01681462	,
+168.9831854	,
+173.4094221	,
+141.5905779	,
+146.0168146	,
+258.9831854	,
+263.4094221	,
+231.5905779	,
+236.0168146	,
+348.9831854	,
+353.4094221	,
+321.5905779	,
+326.0168146
 ];
       }
 }//End of SetupAngles()
@@ -371,45 +548,99 @@ cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 }
       function PlotAnglesTable() {
 
-  document.getElementById("TableTitle").innerHTML = 'Angular bins:';
+	  document.getElementById("TableTitle").innerHTML = 'Angular bins:';
+	  
+	  // Zero the angular bins JSON object
+	  AngularBinsAngle = []; AngularBinsWeight = [];
+	  // Fill the angular bins JSON object
+	  for(i=0; i<NumCrystals; i++){
+	      if(ExcludedCrystalsList[i]==1){ continue; }
+	      for(j=0; j<NumCrystals; j++){
+		  if(ExcludedCrystalsList[j]==1){ continue; }
 
-      // Zero the NPairsAngularBins array
-      for(i=0; i<=180; i++){ NPairsAngularBins[i]=0; }
-// Fill the NPairsAngularBins array
-for(i=0; i<NumCrystals; i++){
-  if(ExcludedCrystalsList[i]==1){ continue; }
-   for(j=0; j<NumCrystals; j++){
-      if(ExcludedCrystalsList[j]==1){ continue; }
-      thisAngle = CalculateAngularDifference(i,j);
-      NPairsAngularBins[Math.floor(thisAngle)]++;
-   }
-}
+		  // Calculate the angular difference for this pair of crystals.
+		  // The function returns 3 decimal place precision
+		  thisAngle = CalculateAngularDifference(i,j);
+		  
+		  console.log('i='+i+', j='+j+', Ang Diff='+thisAngle);
 
-// Plot the Angular Bins table
-document.getElementById("MultiTable").innerHTML = '';
-var row = document.getElementById("MultiTable").insertRow(0); 
-var cell1 = row.insertCell(0); 
-var cell2 = row.insertCell(1); 
-var cell3 = row.insertCell(2); 
-cell1.innerHTML = 'Index'; 
-cell2.innerHTML = 'Angular Difference'; 
-cell3.innerHTML = 'Number of Pairs';
+		  // found is zero until the angular bin is found, if it is still zero then a new entry is created.
+		  var found=0;
 
-for(var num=0; num<NPairsAngularBins.length; num++){
-if(NPairsAngularBins[num]>0){
-  var thisRowNum = document.getElementById("MultiTable").rows.length;
-  var row = document.getElementById("MultiTable").insertRow(thisRowNum);
-  var cell1 = row.insertCell(0); 
-  var cell2 = row.insertCell(1); 
-  var cell3 = row.insertCell(2); 
-  cell1.innerHTML = thisRowNum; 
-  cell2.innerHTML = num; 
-  cell3.innerHTML = NPairsAngularBins[num];
- }
-}
+		  // If no angular bins have yet been created, crate the first one.
+		  if(AngularBinsAngle.length<1){
+		      AngularBinsAngle[0] = thisAngle;
+		      AngularBinsWeight[0] = 1;
+		      console.log('First ever entry - create for first time!!!');
+		      continue;
+		  }
 
+		  // Search through the angular bins already identified to see if there is a match for the current one.
+		  for(k=0; k<AngularBinsAngle.length; k++){
+		      if((thisAngle >= parseFloat(AngularBinsAngle[k] - 0.001)) && (thisAngle <= parseFloat(AngularBinsAngle[k] + 0.001))){
+			  AngularBinsWeight[k]++;
+			  found=1;
+			  console.log('Found angle ('+thisAngle+') for i='+i+',j='+j+' in angular bin['+k+'] ('+AngularBinsAngle[k]+') with weight '+AngularBinsWeight[k]);
+			  break;
+		      }
+		  }
 
-}//End of PlotTables
+		  // If found is still zero at this point then an angular bin matching the
+		  // current value was not found and we need to create a new one.
+		  if(!found){
+		      AngularBinsAngle[AngularBinsAngle.length] = thisAngle;
+		      AngularBinsWeight[AngularBinsWeight.length] = 1;
+		      console.log('Create new angular bin['+AngularBinsWeight.length+'] ('+thisAngle+')');
+		  }
+	      }
+	  }
+
+	  // Manually sort the angular bin and weight arrays to maintain the same order.
+	  // One by one move boundary of unsorted subarray
+	  for(i = 0; i < AngularBinsAngle.length - 1; i++) {
+	      
+              // Find the minimum element in unsorted array
+              var min_idx = i;
+              for(j = i + 1; j < AngularBinsAngle.length; j++){
+		  if(parseFloat(AngularBinsAngle[j]) < parseFloat(AngularBinsAngle[min_idx])){
+                      min_idx = j;
+		  }
+	      }
+              // Swap the found minimum element with the first element for both angles and weights arrays
+	      var temp = AngularBinsAngle[min_idx];
+	      AngularBinsAngle[min_idx] = AngularBinsAngle[i];
+	      AngularBinsAngle[i] = parseFloat(temp);
+              temp = AngularBinsWeight[min_idx];
+	      AngularBinsWeight[min_idx] = AngularBinsWeight[i];
+	      AngularBinsWeight[i] = parseFloat(temp);
+	  }
+	  
+	  
+	  // Plot the Angular Bins table
+	  document.getElementById("MultiTable").innerHTML = '';
+	  var row = document.getElementById("MultiTable").insertRow(0); 
+	  var cell1 = row.insertCell(0); 
+	  var cell2 = row.insertCell(1); 
+	  var cell3 = row.insertCell(2); 
+	  cell1.innerHTML = 'Index'; 
+	  cell2.innerHTML = 'Angular Difference'; 
+	  cell3.innerHTML = 'Number of Pairs';
+	  
+	  for(var num=0; num<AngularBinsAngle.length; num++){
+	      var thisRowNum = document.getElementById("MultiTable").rows.length;
+	      var row = document.getElementById("MultiTable").insertRow(thisRowNum);
+	      var cell1 = row.insertCell(0); 
+	      var cell2 = row.insertCell(1); 
+	      var cell3 = row.insertCell(2); 
+	      cell1.innerHTML = thisRowNum; 
+	      cell2.innerHTML = AngularBinsAngle[num]; 
+	      cell3.innerHTML = AngularBinsWeight[num];
+	  }
+	  
+	  console.log(AngularBinsAngle,AngularBinsWeight);	  
+	  console.log(AngularBinsAngle.sort(function(a, b){return a-b}));
+	  
+      }//End of PlotTables
 
 function ToggleExcludeCrystal(ThisCrystalID) {
 
@@ -432,6 +663,7 @@ PlotTables()
 function CalculateAngularDifference(crystal1,crystal2) {
 // Function to calculate the angular difference between two crystals
 // ACOS(SIN($F$3)*SIN(F3)*COS($G$3-G3)+COS($F$3)*COS(F3)) /(PI()/180)
- return (Math.acos(Math.sin(CrystalTheta[crystal1]*DegToRad) * Math.sin(CrystalTheta[crystal2]*DegToRad) * Math.cos( (CrystalPhi[crystal1]*DegToRad) - (CrystalPhi[crystal2]*DegToRad) ) + (Math.cos(CrystalTheta[crystal1]*DegToRad) * Math.cos(CrystalTheta[crystal2]*DegToRad)))/ RadToDeg).toFixed(1);
+ return parseFloat(Math.acos(Math.sin(CrystalTheta[crystal1]*DegToRad) * Math.sin(CrystalTheta[crystal2]*DegToRad) * Math.cos( (CrystalPhi[crystal1]*DegToRad) - (CrystalPhi[crystal2]*DegToRad) ) + (Math.cos(CrystalTheta[crystal1]*DegToRad) * Math.cos(CrystalTheta[crystal2]*DegToRad)))/ RadToDeg).toFixed(3);
 }
  
+
