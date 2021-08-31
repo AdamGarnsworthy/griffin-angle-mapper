@@ -6,15 +6,14 @@ body {
 #ContainerDivMap {
   width: 35%;
   margin: auto;
-  height: 600px;
-  position:relative;
+  position:sticky;
   top: 5px;
   left: 0px;
   background-color: #FFFFFF;
   padding: 1em;
   border-radius: 1em;
   display: inline-block; 
-  vertical-align:middle;
+  vertical-align:top;
   text-align: center;
   overflow: scroll;
 }
@@ -22,7 +21,6 @@ body {
 #ContainerDivTable {
   width: 60%;
   margin: auto;
-  height: 600px;
   position:relative;
   top: 5px;
   right: 0px;
