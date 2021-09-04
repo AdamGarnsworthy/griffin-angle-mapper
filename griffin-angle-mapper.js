@@ -554,9 +554,9 @@ cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 	  AngularBinsAngle = []; AngularBinsWeight = [];
 	  // Fill the angular bins JSON object
 	  for(i=0; i<NumCrystals; i++){
-	      if(ExcludedCrystalsList[i]==1){ continue; }
+	      if(ExcludedCrystalsList[i+1]==1){ continue; }
 	      for(j=0; j<NumCrystals; j++){
-		  if(ExcludedCrystalsList[j]==1){ continue; }
+		  if(ExcludedCrystalsList[j+1]==1){ continue; }
 
 		  // Calculate the angular difference for this pair of crystals.
 		  // The function returns 3 decimal place precision
