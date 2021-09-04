@@ -562,7 +562,8 @@ cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 		  // The function returns 3 decimal place precision
 		  thisAngle = CalculateAngularDifference(i,j);
 		  if(isNaN(thisAngle)){
-		      thisAngle = 0.0;
+			  if(i==j){ thisAngle = 0.0; }
+			  else{ thisAngle = 180.0; }
 		  }
 
 		  // found is zero until the angular bin is found, if it is still zero then a new entry is created.
