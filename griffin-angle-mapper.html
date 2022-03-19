@@ -27,11 +27,17 @@
 	    </select>
 	  </td></tr>
 	<tr><td align="left">
+	    <label for="angleSelector" class="right inline"><b>Angular Bin:</b></label>
+	    <select id="angleSelector" onchange="PlotTables()">
+	    </select>
+	  </td></tr>
+	<tr><td align="left">
 	    <label for="tableSelector" class="right inline"><b>Table to Display:</b></label>
 	    <select id="tableSelector" onchange="PlotTables()">
 	      <option value="crystals">Crystal Angles</option>
-	      <option value="angles">Angular Bins</option>
 	      <option value="combinations">Crystal Combinations</option>
+	      <option value="angles">Angular Bins</option>
+	      <option value="angle-combinations">Crystal Combinations for a specific angular bin</option>
 	    </select>
 	  </td></tr>
 	</table>
