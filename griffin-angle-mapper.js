@@ -525,15 +525,19 @@ function PlotCombinationsTable() {
     var cell7 = row.insertCell(6);  
     var cell8 = row.insertCell(7);  
     var cell9 = row.insertCell(8); 
+    var cell10 = row.insertCell(9);  
+    var cell11 = row.insertCell(10); 
     cell1.innerHTML = 'Crystal'; 
     cell2.innerHTML = 'Clover'; 
     cell3.innerHTML = 'Theta'; 
     cell4.innerHTML = 'Phi'; 
-    cell5.innerHTML = 'Crystal'; 
-    cell6.innerHTML = 'Clover'; 
-    cell7.innerHTML = 'Theta'; 
-    cell8.innerHTML = 'Phi'; 
-    cell9.innerHTML = 'Angular Difference'; 
+    cell5.innerHTML = 'PSC'; 
+    cell6.innerHTML = 'Crystal'; 
+    cell7.innerHTML = 'Clover'; 
+    cell8.innerHTML = 'Theta'; 
+    cell9.innerHTML = 'Phi'; 
+    cell10.innerHTML = 'PSC'; 
+    cell11.innerHTML = 'Angular Difference'; 
     
     selectedCrystal = parseInt(document.getElementById("crystalSelector").value);
     for(var num=0; num<NumCrystals; num++){
@@ -548,11 +552,16 @@ function PlotCombinationsTable() {
 	var cell7 = row.insertCell(6);  
 	var cell8 = row.insertCell(7);  
 	var cell9 = row.insertCell(8); 
+	var cell10 = row.insertCell(9);  
+	var cell11 = row.insertCell(10); 
 	cell1.innerHTML = (selectedCrystal+1); 
 	cell2.innerHTML = (Math.floor((selectedCrystal)/4)+1)+', '+CloverLocation[Math.floor((selectedCrystal)/16)];
 	cell3.innerHTML = CrystalTheta[selectedCrystal].toFixed(1); 
-	cell4.innerHTML = CrystalPhi[selectedCrystal].toFixed(1); 
-	cell5.innerHTML = (num+1);
+	cell4.innerHTML = CrystalPhi[selectedCrystal].toFixed(1);
+	var P=Math.floor(selectedCrystal/32);
+	var S=Math.floor(((selectedCrystal%32)/4))*2;
+	cell5.innerHTML = P+'-'+S; 
+	cell6.innerHTML = (num+1);
 	row.addEventListener('mouseover', function(e){
 	    if(ExcludedCrystalsList[parseInt(this.id)]==1){ color="red"; }else{ color="yellow"; }
 	    this.style.backgroundColor = color; 
@@ -567,10 +576,13 @@ function PlotCombinationsTable() {
 	    document.getElementById('CellCrystal'+(selectedCrystal+1)).style.backgroundColor = "white"; 
 	    document.getElementById('CellCrystal'+(this.id)).style.backgroundColor = color;
 	});
-	cell6.innerHTML = (Math.floor(num/4)+1)+', '+CloverLocation[Math.floor(num/16)];
-	cell7.innerHTML = CrystalTheta[num].toFixed(1); 
-	cell8.innerHTML = CrystalPhi[num].toFixed(1);
-	cell9.innerHTML = CalculateAngularDifference(selectedCrystal,num);
+	cell7.innerHTML = (Math.floor(num/4)+1)+', '+CloverLocation[Math.floor(num/16)];
+	cell8.innerHTML = CrystalTheta[num].toFixed(1); 
+	cell9.innerHTML = CrystalPhi[num].toFixed(1);
+	var P=Math.floor(num/32);
+	var S=Math.floor(((num%32)/4))*2;
+	cell10.innerHTML = P+'-'+S; 
+	cell11.innerHTML = CalculateAngularDifference(selectedCrystal,num);
 	
     }
 }
